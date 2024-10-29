@@ -4,6 +4,7 @@ export function calculatePasswordStrength(password: string): string {
     if (password.length >= 8) strength += 1;
     if (password.length >= 12) strength += 1;
 
+
 // Check for digits
     if (/\d/.test(password)) strength += 1;
 // Check for lowercase letters

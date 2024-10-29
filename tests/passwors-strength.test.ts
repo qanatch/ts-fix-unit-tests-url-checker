@@ -1,5 +1,6 @@
 import {calculatePasswordStrength} from "../src/passwors-strength";
 
+
 describe('tests calculatePasswordStrength', ()=>{
 
     test('should add 1 point for password length >=8',()=>{
