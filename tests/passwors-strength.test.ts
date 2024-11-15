@@ -1,25 +1,46 @@
 import {calculatePasswordStrength} from "../src/passwors-strength";
 
 
-describe('tests calculatePasswordStrength', ()=>{
+describe('tests password strength return "Very Weak" ', ()=> {
     test('returns "Very Weak" for passwords less than 8 characters without other criteria', () => {
-        expect(calculatePasswordStrength("password")).toBe("Very Weak");
+        expect(calculatePasswordStrength("passwor")).toBe("Very Weak")
+    })
+    test('returns "Very Weak" for passwords less than 8 characters with  uppercase letters', () => {
+        expect(calculatePasswordStrength("Passwor")).toBe("Very Weak")
     })
     test('returns "Very Weak" for passwords less than 8 characters and digits', () => {
-        expect(calculatePasswordStrength("pass1")).toBe("Very Weak");
+        expect(calculatePasswordStrength("pass1")).toBe("Very Weak")
     })
+})
+describe('test password strength return "Weak"', ()=> {
 
-    test('returns "Weak" for passwords strength equal 3 with length >=8 and digital|| uppercase', () => {
-        expect(calculatePasswordStrength("password1")).toBe("Weak");
-        expect(calculatePasswordStrength("Password")).toBe("Weak");
+    test('returns "Weak" for passwords strength equal 3 with length >=8 and digital', () => {
+        expect(calculatePasswordStrength("password1")).toBe("Weak")
     })
-
-    test('returns "Moderate" for passwords strength equal 4 with uppercase and lowercase letters, and numbers', () => {
-         expect(calculatePasswordStrength("Password123")).toBe("Moderate");
+    test('returns "Weak" for passwords strength equal 3 with length >=8 and uppercase', () => {
+        expect(calculatePasswordStrength("Password")).toBe("Weak")
     })
+    test('returns "Weak" for passwords strength equal 3 with length >=8 and special characters', () => {
+        expect(calculatePasswordStrength("passwor#")).toBe("Weak")
+    })
+})
+describe('test password strength return "Moderate"', ()=> {
 
-    test('returns "Strong" for passwords strength equal 5 with uppercase, lowercase, numbers, and special characters', () => {
-        expect(calculatePasswordStrength("Password123!@#")).toBe("Strong");
+    test('returns "Moderate" for passwords strength equal 4 with with length >=8,uppercase,lowercase letters, and numbers', () => {
+        expect(calculatePasswordStrength("Password123")).toBe("Moderate")
+    })
+    test('returns "Moderate" for passwords strength equal 4 with with length < 8,uppercase,lowercase letters, and special characters', () => {
+        expect(calculatePasswordStrength("Pass12#")).toBe("Moderate")
+    })
+})
+describe('test password strength return "Strong"', ()=> {
+
+    test('returns "Strong" for passwords strength equal 5 with with length >8,uppercase, lowercase, numbers, and special characters', () => {
+        expect(calculatePasswordStrength("Pass123!@#")).toBe("Strong")
+
+    })
+    test('returns "Strong" for passwords strength equal or more then 5, with length >=12,uppercase, lowercase, numbers, and special characters', () => {
+        expect(calculatePasswordStrength("Password123!@#")).toBe("Strong")
 
     })
 
